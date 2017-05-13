@@ -83,6 +83,25 @@ You are free to close your `SSH` session and everything that is in a `tmux` sess
 
 ---
 
+## **Voting**
+In order for your hot wallets to vote as you wish you will need to connect to each one and specify your voting choices. This is done by using the following commands:
+
+To see what votes are available.
+
+`dcrctl --wallet getvotechoices`
+
+To set a vote preference.
+
+`dcrctl --wallet setvotechoice <agendaid> <choice>`
+
+So if for example you wished to vote `yes` for the proposed sdiff algo change which will be the first hard fork vote you would do:
+
+`dcrctl --wallet setvotechoice sdiffalgorithm yes`
+
+And remember this process will need to be repeated on each VPS instance runnig a hot voting wallet.
+
+---
+
 ## **Ticket Buying**
 Now from your cool wallet you can purchase tickets using the following command once your wallet is unlocked:
 
