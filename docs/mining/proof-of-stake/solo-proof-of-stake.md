@@ -43,12 +43,15 @@ Create symlinks to the binaries to make things easier.
 `sudo ln -s ~/decred/dcrd /usr/bin/dcrd & sudo ln -s ~/decred/dcrwallet /usr/bin/dcrwallet & sudo ln -s ~/decred/dcrctl /usr/bin/dcrctl & sudo ln -s ~/decred/promptsecret /usr/bin/promptsecret`
 
 Install `tmux` and `htop`.
+
 `sudo apt install tmux htop`
 
 Start `tmux` sessions for `dcrd` and `dcrwallet`.
+
 `tmux new -s dcrd`
 
 Then in that session start `dcrd`.
+
 `dcrd`
 
 To detach from this session press `<CTRL>` + `<B>` and then `<D>` on your keyboard.
@@ -56,9 +59,11 @@ To detach from this session press `<CTRL>` + `<B>` and then `<D>` on your keyboa
 `tmux new -s dcrwallet`
 
 Now create a new wallet and write down the 33 word seed, you will reuse this seed for each VPS you set up so they all have the same addresses.
+
 `dcrwallet --create`
 
 Once complete you can start dcrwallet with voting enabled.
+
 `dcrwallet --enablevoting`
 
 Now detach from this session using `<CTRL>` + `<B>` and then `<D>` again.
@@ -66,6 +71,7 @@ Now detach from this session using `<CTRL>` + `<B>` and then `<D>` again.
 If you need to reattach to a `tmux` session you can do `tmux attach -t dcrd` for example.
 
 Now we can unlock the wallet permanently using the following command:
+
 `promptsecret | dcrctl --wallet walletpassphrase - 0`
 
 Then we will generate an address which we will use to delegate voting rights using:
@@ -83,6 +89,7 @@ Now from your cool wallet you can purchase tickets using the following command o
 Replacing `DsHotWalletAddressFromVPS` with your hot wallet voting address which you generated earlier and using the command above will attempt to purchase `10` tickets with a max price of `60` DCR and delegate voting rights to your VPS instances.
 
 If you wish to automate ticket purchases using ticketbuyer you will need to add the following info in your `dcrwallet.conf` where `DsHotWalletAddressFromVPS` is once again the address you generated on your VPS.
+
 `
 enableticketbuyer=1
 ticketaddress=DsHotWalletAddressFromVPS
