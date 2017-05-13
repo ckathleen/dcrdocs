@@ -90,7 +90,7 @@ Replacing `DsHotWalletAddressFromVPS` with your hot wallet voting address which 
 
 If you wish to automate ticket purchases using ticketbuyer you will need to add the following info in your `dcrwallet.conf` where `DsHotWalletAddressFromVPS` is once again the address you generated on your VPS.
 
-`
+```
 enableticketbuyer=1
 ticketaddress=DsHotWalletAddressFromVPS
-`
+```
