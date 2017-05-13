@@ -82,6 +82,9 @@ Copy that address as you will need it later when purchasing tickets using your c
 
 You are free to close your `SSH` session and everything that is in a `tmux` session will continue running. You can reconnect and attach to the `dcrd` and `dcrwallet` sessions to verify this.
 
+---
+
+## **Ticket Buying**
 Now from your cool wallet you can purchase tickets using the following command once your wallet is unlocked:
 
 `dcrctl --wallet purchaseticket default 60 1 DsHotWalletAddressFromVPS 10`
