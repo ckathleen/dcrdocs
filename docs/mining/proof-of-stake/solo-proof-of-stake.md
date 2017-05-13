@@ -98,7 +98,7 @@ So if for example you wished to vote `yes` for the proposed sdiff algo change wh
 
 `dcrctl --wallet setvotechoice sdiffalgorithm yes`
 
-And remember this process will need to be repeated on each VPS instance runnig a hot voting wallet.
+And remember, this process will need to be repeated on each VPS instance running a hot voting wallet.
 
 ---
 
