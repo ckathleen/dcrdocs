@@ -2,7 +2,7 @@
 
 
 ## **Overview**
-If you want to do something akin to running your own pool, where "hot wallets" on virtual private servers (VPSs) will do the voting on your behalf, but your wallet which contains your funds (cool wallet) [see guide on running a secure cool wallet which I’m writing after I finish this one] will control ticket buying and receive all rewards this guide is for you.
+If you want to do something akin to running your own pool, where "hot wallets" on virtual private servers (VPSs) will do the voting on your behalf, but your wallet which contains your funds (see [Setting up a secure cool wallet for Decred](secure-cool-wallet.md)) will control ticket buying and receive all rewards this guide is for you.
 
 Basically the advantage of the setup is that the VPSs will be online and ready to vote 24/7 so your machine at home (cool wallet) does not have to be. You will also have redundancy because you will be running multiple hot wallets on servers in different geographic locations.
 
