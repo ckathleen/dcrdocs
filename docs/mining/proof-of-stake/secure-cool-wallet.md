@@ -19,6 +19,9 @@ Single-board computers such as the Raspberry Pi 3 Model B are so cheap (~$35 USD
 
 * [Boot it up and install Decred using dcrinstall for Linux ARM64.](https://docs.decred.org/getting-started/install-guide/#dcrinstall)
 
+---
+
+## **Configuration**
 
 **Important**
 
