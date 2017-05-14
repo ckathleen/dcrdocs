@@ -47,7 +47,7 @@ tmux new -d -s dcrd 'dcrd' & tmux new -d -s dcrwallet 'dcrwallet --enablevoting'
 EOF
 ```
 
-Now make it executable with chmod +x ~/decred.sh
+Now make it executable with `chmod +x ~/decred.sh`
 
 Then we will make symlinks to the Decred binaries and bash script we created above.
 
