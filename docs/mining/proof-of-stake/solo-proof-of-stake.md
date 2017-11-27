@@ -95,7 +95,7 @@ To see what votes are available.
 
 To set a vote preference.
 
-`dcrctl --wallet setvotechoice <agendaid> <choice>`
+`dcrctl --wallet setvotechoice <agendaid> <yes|no>`
 
 So if for example you wished to vote `yes` for the proposed sdiff algo change which will be the first hard fork vote you would do:
 
