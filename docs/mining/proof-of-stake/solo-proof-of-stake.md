@@ -60,9 +60,8 @@ Create a script to set everything up:
 `echo "tmux new -d -s dcrd 'dcrd' & tmux new -d -s dcrwallet 'dcrwallet --enablevoting --promptpass' & tmux attach -t dcrwallet" > ~/decred.sh`
 
 Make the script executable:
-`chmod +x decred.sh
+`chmod +x decred.sh`
 
-`
 Create symlinks to the binaries to make things easier:
 
 `sudo ln -s ~/decred/dcrd /usr/local/bin/dcrd & sudo ln -s ~/decred/dcrwallet /usr/local/bin/dcrwallet & sudo ln -s ~/decred/dcrctl /usr/local/bin/dcrctl & sudo ln -s ~/decred/promptsecret /usr/local/bin/promptsecret & sudo ln -s ~/decred.sh /usr/local/bin/decred`
