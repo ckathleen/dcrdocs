@@ -28,56 +28,60 @@ Note: Another consideration is storage space. As you will need to store the comp
 
 ## **Hot Wallet Setup**
 
-Once you have set up a VPS you will need to get Decred up and running on it, so that you may generate a voting address. This will be the address which you specify when you purchase tickets, so as to grant the hot wallets voting rights. Follow the steps below to set up your hot wallet. You can then repeat the steps for each additional instance you want to run, or just clone the VPS is the control panel of your provider and select a different geographic location where you would like to host it. It is highly recommended you run at least two hot wallets, one on the East coast of the US and one in Europe, adding an additional one on the West coast of the US is also a good idea.
+Once you have set up a VPS you will need to get Decred up and running on it, so that you may generate a voting address. This will be the address which you specify when you purchase tickets, so as to grant the hot wallets voting rights. Follow the steps below to set up your hot wallet. You can then repeat the steps for each additional instance you want to run, or just clone the VPS from the control panel of your provider and select a different geographic location where you would like to host it. It is highly recommended you run at least two hot wallets, one on the East coast of the US and one in Europe, adding an additional one on the West coast of the US is also a good idea.
 
 Use SSH to connect to one of the VPS instances you set up. We will assume the OS you are running is Ubuntu 16.04 LTS as it is popular and available on all the providers listed above.
 Once connected download and install the latest version of Decred using dcrinstall (https://github.com/decred/decred-release/releases).
 
-`wget https://github.com/decred/decred-release/releases/download/v1.0.1/dcrinstall-linux-amd64-v1.0.1`
+Update the OS:
 
-`sudo chmod +x dcrinstall-linux-amd64-v1.0.1 && ./dcrinstall-linux-amd64-v1.0.1`
+`sudo apt update && sudo apt upgrade`
 
-Create symlinks to the binaries to make things easier.
+Install `tmux`:
 
-`sudo ln -s ~/decred/dcrd /usr/bin/dcrd & sudo ln -s ~/decred/dcrwallet /usr/bin/dcrwallet & sudo ln -s ~/decred/dcrctl /usr/bin/dcrctl & sudo ln -s ~/decred/promptsecret /usr/bin/promptsecret`
+`sudo apt install tmux`
 
-Install `tmux` and `htop`.
+Download the latest Decred CLI release:
 
-`sudo apt install tmux htop`
+`wget https://github.com/decred/decred-release/releases/download/v1.1.0/dcrinstall-linux-amd64-v1.1.0`
 
-Start `tmux` sessions for `dcrd` and `dcrwallet`.
+Make it executable:
 
-`tmux new -s dcrd`
+`chmod +x dcrinstall-linux-amd64-v1.1.0`
 
-Then in that session start `dcrd`.
+Run the installer:
 
-`dcrd`
+`./dcrinstall-linux-amd64-v1.1.0`
 
-To detach from this session press `<CTRL>` + `<B>` and then `<D>` on your keyboard.
+During the install process you will create a new wallet and write down the 33 word seed, you will reuse this seed for each VPS you set up so they all have the same addresses.
 
-`tmux new -s dcrwallet`
+Create a script to set everything up:
 
-Now create a new wallet and write down the 33 word seed, you will reuse this seed for each VPS you set up so they all have the same addresses.
+`echo "tmux new -d -s dcrd 'dcrd' & tmux new -d -s dcrwallet 'dcrwallet --enablevoting --promptpass' & tmux attach -t dcrwallet" > ~/decred.sh`
 
-`dcrwallet --create`
+Make the script executable:
+`chmod +x decred.sh
 
-Once complete you can start dcrwallet with voting enabled.
+`
+Create symlinks to the binaries to make things easier:
 
-`dcrwallet --enablevoting`
+`sudo ln -s ~/decred/dcrd /usr/local/bin/dcrd & sudo ln -s ~/decred/dcrwallet /usr/local/bin/dcrwallet & sudo ln -s ~/decred/dcrctl /usr/local/bin/dcrctl & sudo ln -s ~/decred/promptsecret /usr/local/bin/promptsecret & sudo ln -s ~/decred.sh /usr/local/bin/decred`
 
-Now detach from this session using `<CTRL>` + `<B>` and then `<D>` again.
+Start everything:
 
-If you need to reattach to a `tmux` session you can do `tmux attach -t dcrd` for example.
+`decred`
 
-Now we can unlock the wallet permanently using the following command:
-
-`promptsecret | dcrctl --wallet walletpassphrase - 0`
-
-Then we will generate an address which we will use to delegate voting rights using:
+Now we will generate an address which we will use to delegate voting rights using: 
 
 `dcrctl --wallet getnewaddress`
 
 Copy that address as you will need it later when purchasing tickets using your cool wallet.
+
+To check everything is working you can do:
+
+`tmux attach -t dcrd` to check on `dcrd` or `tmux attach -t wallet` for `dcrwallet`.
+
+To detach from this session press `<CTRL>` + `<B>` and then `<D>` on your keyboard.
 
 You are free to close your `SSH` session and everything that is in a `tmux` session will continue running. You can reconnect and attach to the `dcrd` and `dcrwallet` sessions to verify this.
 
