@@ -46,7 +46,7 @@ Create a  `bash` script called `decred.sh` which will start a `tmux` session for
 ```
 cat << EOF > ~/decred.sh
 #!/bin/bash
-tmux new -d -s dcrd 'dcrd' & tmux new -d -s dcrwallet 'dcrwallet --enablevoting' & promptsecret | dcrctl --wallet walletpassphrase - 0 && tmux new -s dcrctl
+tmux new -d -s dcrd 'dcrd' & tmux new -d -s dcrwallet 'dcrwallet' & promptsecret | dcrctl --wallet walletpassphrase - 0 && tmux new -s dcrctl
 EOF
 ```
 
