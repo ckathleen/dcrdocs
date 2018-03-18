@@ -11,18 +11,14 @@ The advantage of this over using a pool is that there is no risk of a pool opera
 ---
 
 ## **VPS Providers**
-The first thing you will need is to choose at least one VPS provider. There is a short list of good providers below, you may mix and match any number of providers.
+The first thing you will need is to choose at least one VPS provider. There is a short list of good providers below, you may mix and match any number of providers, ideally your VPS should have 2 GB of RAM.
 
+* [Scaleway](https://www.scaleway.com/)
 * [Google Cloud Platform (GCP)](https://cloud.google.com/)
-Use at least a VM Instance with 1 shared vCPU and 1.7 GB of memory.
-
 * [Amazon Web Services (AWS)](https://aws.amazon.com/)
-Use at least a t2.micro EC2 Instance with 1GB of memory.
-
 * [OVH](https://www.ovh.com/)
-Use at least a VPS SSD instance with 2 GB of memory.
 
-Note: Another consideration is storage space. As you will need to store the complete Decred blockchain which is constantly growing, it is important to keep in mind that while it is currently quite small, it will eventually grow to the point where you may need to upgrade the storage space on your VPS instances.
+Note: Another consideration is storage space. As you will need to store the complete Decred blockchain which is constantly growing, it is important to keep in mind that while it is currently quite small (~2.7 GB), it will eventually grow to the point where you may need to upgrade the storage space on your VPS instances.
 
 ---
 
@@ -30,7 +26,7 @@ Note: Another consideration is storage space. As you will need to store the comp
 
 Once you have set up a VPS you will need to get Decred up and running on it, so that you may generate a voting address. This will be the address which you specify when you purchase tickets, so as to grant the hot wallets voting rights. Follow the steps below to set up your hot wallet. You can then repeat the steps for each additional instance you want to run, or just clone the VPS from the control panel of your provider and select a different geographic location where you would like to host it (each hot wallet needs to use the same seed). It is highly recommended you run at least two hot wallets, one on the East coast of the US and one in Europe, adding an additional one on the West coast of the US is also a good idea.
 
-Use SSH to connect to one of the VPS instances you set up. We will assume the OS you are running is Ubuntu 16.04 LTS as it is popular and available on all the providers listed above.
+Use SSH to connect to one of the VPS instances you set up. We will assume the OS you are running is Debian 9 (Stretch) as it is popular and available on all the providers listed above.
 Once connected download and install the latest version of Decred using dcrinstall (https://github.com/decred/decred-release/releases).
 
 Update the OS:
@@ -43,15 +39,15 @@ Install `tmux`:
 
 Download the latest Decred CLI release:
 
-`wget https://github.com/decred/decred-release/releases/download/v1.1.0/dcrinstall-linux-amd64-v1.1.0`
+`wget https://github.com/decred/decred-release/releases/download/v1.1.2/dcrinstall-linux-amd64-v1.1.2`
 
 Make it executable:
 
-`chmod +x dcrinstall-linux-amd64-v1.1.0`
+`chmod +x dcrinstall-linux-amd64-v1.1.2`
 
 Run the installer:
 
-`./dcrinstall-linux-amd64-v1.1.0`
+`./dcrinstall-linux-amd64-v1.1.2`
 
 During the install process you will create a new wallet and write down the 33 word seed, you will reuse this seed for each VPS you set up so they all have the same addresses.
 
@@ -97,7 +93,7 @@ To set a vote preference.
 
 `dcrctl --wallet setvotechoice <agendaid> <yes|no>`
 
-So if for example you wished to vote `yes` for the proposed sdiff algo change which will be the first hard fork vote you would do:
+So if for example you wished to vote `yes` for the proposed sdiff algo change which was the first hard fork vote you would do:
 
 `dcrctl --wallet setvotechoice sdiffalgorithm yes`
 
@@ -108,9 +104,9 @@ And remember, this process will need to be repeated on each VPS instance running
 ## **Ticket Buying**
 Now from your cool wallet you can purchase tickets using the following command once your wallet is unlocked:
 
-`dcrctl --wallet purchaseticket default 60 1 DsHotWalletAddressFromVPS 10`
+`dcrctl --wallet purchaseticket default 100 1 DsHotWalletAddressFromVPS 10`
 
-Replacing `DsHotWalletAddressFromVPS` with your hot wallet voting address which you generated earlier and using the command above will attempt to purchase `10` tickets with a max price of `60` DCR and delegate voting rights to your VPS instances.
+Replacing `DsHotWalletAddressFromVPS` with your hot wallet voting address which you generated earlier and using the command above will attempt to purchase `10` tickets with a max price of `100` DCR and delegate voting rights to your VPS instances.
 
 If you wish to automate ticket purchases using ticketbuyer you will need to add the following info in your `dcrwallet.conf` where `DsHotWalletAddressFromVPS` is once again the address you generated on your VPS.
 
