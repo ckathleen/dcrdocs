@@ -4,7 +4,7 @@
 ## **Overview**
 Decred’s Proof-of-Stake system requires a user to have a wallet connect to the network in order to purchase tickets so as to participate in its governance model and receive the corresponding rewards. This introduces some risks compared to other setups where a user might choose to store private keys on a paper wallet and not have to worry about a host of attack vectors introduced by being online.
 
-To mitigate a great number of the risks associated with having a Decred wallet connecting to the Internet to purchase tickets a user may want to consider setting up a secure cool wallet. This guide will walk you through a low cost solution that can protect the user from several common pitfalls while explaining the rationale behind the recommendations.
+To mitigate a great number of the risks associated with having a Decred wallet connecting to the Internet to purchase tickets a user may want to consider setting up a secure cool wallet (not quite a cold wallet). This guide will walk you through a low cost solution that can protect the user from several common pitfalls while explaining the rationale behind the recommendations.
 
 ---
 
@@ -22,16 +22,27 @@ If cost is a huge factor, single-board computers such as the Raspberry Pi 3 Mode
 
 Once your staking machine is set up you will need to install the Decred CLI tools.
 1. Import the Decred Release Signing Key in GnuPG.
+
 `gpg --keyserver pgp.mit.edu --recv-keys 0x518A031D`
+
 2. Download the installer, manifest, and signature files.
+
 `wget https://github.com/decred/decred-release/releases/download/v1.3.0/{dcrinstall-linux-amd64-v1.3.0,manifest-dcrinstall-v1.3.0.txt,manifest-dcrinstall-v1.3.0.txt.asc}'
+
 3. Verify the manifest.
+
 `gpg --verify manifest-dcrinstall-v1.3.0.txt.asc`
+
 4. Verify the SHA-256 hash in the manifest matches that of the binary.
+
 `sha256sum dcrinstall-linux-amd64-v1.3.0`
+
 5. Make the binary executable.
+
 `chmod +x dcrinstall-linux-amd64-v1.3.0`
+
 6. Run it.
+
 `./dcrinstall-linux-amd64-v1.3.0`
 
 **Important**
@@ -50,7 +61,7 @@ Once the wallet is created we can do a few things to make life easier.
 
 1. Create a `bash` script called `decred.sh` which will start a `tmux` session for each application, start `dcrd`, start `dcrwallet`, prompt us for the password to unlock the wallet, and start `dcrctl`. Also make sure you have `tmux` installed.
 
-`tmux new -d -s dcrd 'dcrd & tmux new -d -s dcrwallet 'dcrwallet --promptpass' & tmux attach -t dcrwallet" > ~/decred.sh`
+`echo "tmux new -d -s dcrd 'dcrd & tmux new -d -s dcrwallet 'dcrwallet --promptpass' & tmux attach -t dcrwallet" > ~/decred.sh"`
 
 2. Add the pathe to the Decred binaries to your `.profile`.
 `"PATH=~/decred:$PATH" >> ~/.profile && source ~/.profile`
