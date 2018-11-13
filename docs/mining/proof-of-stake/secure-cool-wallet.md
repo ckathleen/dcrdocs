@@ -44,14 +44,6 @@ When you create your wallet, write the 33 seed words down using a pen and paper 
 
 The only way a person should be able to get the seed words is by acquiring one of the copies you have written out. You should store one copy offsite in case of fire or theft.
 
-
-Optional:
-Once you have two copies of the seed words we will erase the wallet you just created and recreate it from the seed words to test that they were written down correctly since incorrectly transcribing the words could leave you unable to recover your funds in case of emergency. We will verify that both copies are correct by taking the first seed word from the first copy the second seed word from the second copy and alternate until all words have been input while checking both copies for consistency.
-
-`rm ~/.dcrwallet/mainnet/wallet.db`
-
-Then create a new wallet using `dcrwallet --create` and choose to restore the wallet from seed.
-
 ---
 
 Once the wallet is created we can do a few things to make life easier. 
