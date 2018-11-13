@@ -27,7 +27,7 @@ Once your staking machine is set up you will need to install the Decred CLI tool
 
 2. Download the installer, manifest, and signature files.
 
-`wget https://github.com/decred/decred-release/releases/download/v1.3.0/{dcrinstall-linux-amd64-v1.3.0,manifest-dcrinstall-v1.3.0.txt,manifest-dcrinstall-v1.3.0.txt.asc}'
+`wget https://github.com/decred/decred-release/releases/download/v1.3.0/{dcrinstall-linux-amd64-v1.3.0,manifest-dcrinstall-v1.3.0.txt,manifest-dcrinstall-v1.3.0.txt.asc}`
 
 3. Verify the manifest.
 
