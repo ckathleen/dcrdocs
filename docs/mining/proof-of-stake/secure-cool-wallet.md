@@ -9,7 +9,9 @@ To mitigate a great number of the risks associated with having a Decred wallet c
 ---
 
 ## **Hardware**
-The first concept we will address is that of _compartmentalization_. There is really no reason that a machine which may be storing hundreds or thousands of dollars worth of cryptocurrency should have multiple roles. It should not be used, for gaming, word processing, web browsing, downloading torrents, etc…
+The first concept we will address is that of _compartmentalization_. There is really no reason that a machine which may be storing large amounts of cryptocurrency should have multiple roles. It should not be used, for gaming, word processing, web browsing, downloading torrents, etc...
+
+I highly recommend [Qubes OS](https://www.qubes-os.org/) paired with [compatible hardware](https://www.qubes-os.org/hcl/).
 
 Single-board computers such as the Raspberry Pi 3 Model B are so cheap (~$35 USD) that it is a good investment as well as good operational security to set one up specifically for the purpose of PoS mining. The following steps will explain how to set one up in a secure manner so it may be used with a stakepool or hot wallet setup as described in Solo Proof-of-Stake (PoS) Mining. If you have a more powerful machine available to serve this dedicated task use that instead. 
 
