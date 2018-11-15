@@ -6,12 +6,12 @@ If you want to do something akin to running your own pool, where "hot wallets" o
 
 Basically the advantage of the setup is that the VPSs will be online and ready to vote 24/7 so your machine at home (cool wallet) does not have to be. You will also have redundancy and low latency as you will be running multiple hot wallets on servers in different geographic locations (3 is recommended).
 
-The advantage of this over using a pool is that there is no risk of a pool operator voting in a manner contrary to your wishes, it promotes decentralization, and there is no pool fee. The only additional costs will be those of maintaining the VPSs which may be significantly lower than what a pool might cost if you have a fair number of tickets.
+The advantages of this over using a pool is that 1) there is no risk of a pool operator voting in a manner contrary to your wishes, it promotes decentralization, and 2) there is no pool fee. The only additional costs will be maintaining the VPSs which may be significantly lower than what a pool might cost if you have a fair number of tickets.
 
 ---
 
 ## VPS Providers
-The first thing you will need is to choose at least one VPS provider. You will find a short list of decent providers below, you may mix and match any number of providers, ideally your VPS should have at least 2 GB of RAM.
+The first thing you need to do is choose at least one VPS provider. You will find a short list of decent providers below, you may mix and match any number of providers, ideally your VPS should have at least 2 GB of RAM.
 
 * [Scaleway](https://www.scaleway.com/)
 * [Google Cloud Platform (GCP)](https://cloud.google.com/)
@@ -24,7 +24,7 @@ Note: Another consideration is storage space. As you will need to store the comp
 
 ## Hot Wallet Setup
 
-Once you have set up a VPS you will need to get Decred up and running on it, so that you may generate a voting address. This will be the address which you specify when you purchase tickets, so as to grant the hot wallets voting rights. Follow the steps below to set up your hot wallet. You can then repeat the steps for each additional instance you want to run, or just clone the VPS from the control panel of your provider and select a different geographic location where you would like to host it (each hot wallet needs to use the same seed). It is highly recommended you run at least three hot wallets, one on the East coast of the US, one in Europe, and one in Asia should be adequate, adding an additional one on the West coast of the US might be desireable as welif you're into overkill.
+Once you have set up a VPS you will need to get Decred up and running, so you can generate a voting address. This will be the address which you specify when you purchase tickets, so as to grant the hot wallets voting rights. Follow the steps below to set up your hot wallet. You can then repeat the steps for each additional instance you want to run, or just clone the VPS from the control panel of your provider and select a different geographic location where you would like to host it (each hot wallet needs to use the same seed). It is highly recommended you run at least three hot wallets, one on the East coast of the US, one in Europe, and one in Asia should be adequate, adding an additional one on the West coast of the US might be desireable as welif you're into overkill.
 
 Use SSH to connect to one of the VPS instances you set up. We will assume the OS you are running is Ubuntu as it is popular and available on all the providers listed above.
 Once connected download and install the latest version of Decred using dcrinstall (https://github.com/decred/decred-release/releases).
@@ -33,14 +33,14 @@ To avoid a super long-winded section on setting up the wallets I'll just include
 
 `sudo apt update && sudo apt upgrade && sudo apt install tmux curl && v=v1.3.0; a=amd64; b=dcrinstall-linux-${a}-${v}; wget https://github.com/decred/decred-release/releases/download/${v}/${b}; chmod +x ${b}; ./${b}; ip=$(curl icanhazip.com); echo "tmux new -d -s dcrd 'dcrd --externalip=${ip}' & tmux new -d -s dcrwallet 'dcrwallet --enablevoting --promptpass' & tmux attach -t dcrwallet" > ~/decred.sh && chmod +x decred.sh && echo "PATH=~/decred:$PATH" >> ~/.profile && source ~/.profile`
 
-You may want to change the `v=v1.3.0` to the latest version if a newer one has been relased and `a=amd64` to whatever CPU architecture your VPS is using.
+You may want to change the `v=v1.3.0` to the latest version if a newer one has been released and `a=amd64` to whatever CPU architecture your VPS is using.
 
 Start everything:
 
 `./decred.sh`
 
 The first time you do this the blockchain will be downloaded, I would wait until that process is complete before continuing. You can check what the latest block is on [dcrdata](https://explorer.dcrdata.org/).
-Then you can moitor the download progress by doing `tmux attach -t dcrd`.
+Then you can monitor the download progress by running `tmux attach -t dcrd`.
 
 To detach from this session press `<CTRL>` + `<B>` and then `<D>` on your keyboard.
 
