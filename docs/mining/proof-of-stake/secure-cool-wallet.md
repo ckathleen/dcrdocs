@@ -2,7 +2,7 @@
 
 
 ## Overview
-Decred’s Proof-of-Stake system requires a user to have a wallet connect to the network in order to purchase tickets so as to participate in its governance model and receive the corresponding rewards. This introduces some risks compared to other setups where a user might choose to store private keys on a paper wallet and not have to worry about a host of attack vectors introduced by being online.
+Decred’s Proof-of-Stake system requires a user to have a wallet which is connected to the network. This allows the user to participate in the Decred governance model and receive the rewards from validating the transactions in mined blocks. Decred's model introduces some risks compared to other setups where a user might choose to store private keys on a paper wallet and not have to worry about a host of attack vectors introduced by being online.
 
 To mitigate a great number of the risks associated with having a Decred wallet connecting to the Internet to purchase tickets a user may want to consider setting up a secure cool wallet (not quite a cold wallet). This guide will walk you through a low cost solution that can protect the user from several common pitfalls while explaining the rationale behind the recommendations.
 
@@ -53,7 +53,7 @@ When you create your wallet, write the 33 seed words down using a pen and paper 
 * **DO NOT** save the seed words in a text file on a computer.
 * **DO NOT** email the seed words to yourself for "safe keeping".
 
-The only way a person should be able to get the seed words is by acquiring one of the copies you have written out. You should store one copy offsite in case of fire or theft.
+The only way a person should be able to get the seed words is by acquiring one of your physical, written copies. You should store one copy offsite in case of fire or theft.
 
 ---
 
@@ -63,7 +63,7 @@ Once the wallet is created we can do a few things to make life easier.
 
 `echo "tmux new -d -s dcrd 'dcrd & tmux new -d -s dcrwallet 'dcrwallet --promptpass' & tmux attach -t dcrwallet" > ~/decred.sh"`
 
-2. Add the pathe to the Decred binaries to your `.profile`.
+2. Add the path to the Decred binaries to your `.profile`.
 `"PATH=~/decred:$PATH" >> ~/.profile && source ~/.profile`
 
 3. Now make it executable with `chmod +x ~/decred.sh`
@@ -75,11 +75,9 @@ The next step will be to start buying tickets manually or using `ticketbuyer` in
 After you have your voting wallets set up see the section below.
 
 ## Ticket Buying
-Now from your cool wallet you can purchase tickets using the following command once your wallet is unlocked:
+Now from your cool wallet you can purchase tickets using the command below assuming your wallet is unlocked. The command below will attempt to purchase `10` tickets with a max price of `150` DCR each and delegate voting rights to your VPS instances. Note that `DsHotWalletAddressFromVPS` should be replaced with your hot wallet voting address which you generated when you set up your VPS for voting.
 
 `dcrctl --wallet purchaseticket default 150 1 DsHotWalletAddressFromVPS 10`
-
-Replacing `DsHotWalletAddressFromVPS` with your hot wallet voting address which you generated when you set up your VPS for voting. and using the command above will attempt to purchase `10` tickets with a max price of `150` DCR each and delegate voting rights to your VPS instances.
 
 If you wish to automate ticket purchases using ticketbuyer you will need to add the following info in your `~/.dcrwallet/dcrwallet.conf` where `DsHotWalletAddressFromVPS` is once again the address you generated on your voting VPS.
 
@@ -93,7 +91,7 @@ ticketbuyer.balancetomaintainabsolute=0
 
 Setting vote choices for on-chain votes will happen on the VPSs you have set up and the process is documented in [Solo Proof-of-Stake (PoS) Voting guide](solo-proof-of-stake.md).
 
-For Politeia votes you will need to cast those from your cool wallet. I will outline the process for doing so using the `politeiavoter` CLI tool.
+You need to cast Politeia votes from your cool wallet. I will outline the process for doing so using the `politeiavoter` CLI.
 
 1. Download the Politeia archive, manifest, and signature files.
 
